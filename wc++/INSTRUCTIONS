@@ -1,0 +1,14 @@
+Create a program that computes some statistics about a text file stored on disk.
+Please include instructions for using it.
+
+The statistics are:
+
+	whitespace-delimited word count,
+	line count,
+	average number of letters per word (to one decimal place) and
+	most common letter.
+
+We will check the accuracy of the output;  assess the program for style and
+readability;  and also look at how easy it is to extend your program to compute
+additional statistics.  The expectation is that you produce production-level
+code with all associated measures --- testing, documentation etc..

@@ -1,0 +1,51 @@
+This program reads a text file from disk and generates the following statistics:
+
+    whitespace delimited word count,
+    line count,
+    average number of letters per word (to one decimal place) and
+    most common letter(s).
+
+This program defines a whitespace to be the start and end of the file and any
+wide character for which iswspace(3) returns true.  A letter is any wide
+character for which iswalpha(3) returns true;  for alphabets where the
+distinction is made, lower case letters are replaced by their upper case
+equivalents using towupper(3).  The encoding chosen is determined by the locale
+but may be overridden by the environment variables described in setlocale(3).
+
+This program has been tested on recent installations of Linux, Solaris and
+MacOS.  Note that MacOS's support for locales in libc is incomplete and so on
+this platform the program will recognise letters from only a very limited number
+of alphabets.  The program can be built with
+
+    make
+
+in the current directory.  Thereafter run it with
+
+    ./wc++ <input_file>
+
+Various options (use "-h" for a list) permit an exact choice of statistics.
+
+The directory tests/ contains some simple unit tests, mostly aimed at producing
+edge cases, which can be run with
+
+    make test
+
+The expected outputs reflect the behaviour on Linux;  differences in
+implementation mean that execution on other platforms may produce different, but
+not necessarily incorrect, output.  The test inputs are
+
+01	An empty file
+02	"A a b b$"
+03	As 02 but beginning with various leading new lines.
+04 	"The quick brown fox jumped over the lazy dog." (no new line).
+05	As 04, but lots of trailing spaces/tabs/new lines.
+06	Big random text file for fuzz testing;  checking for lack of failure.
+07	As 02 but permission 000;  checking for graceful failure.
+08	Does not exist;  checking for graceful failure.
+09	"a$"
+10	"a B c D e F$"
+11      "a é î o ü$" (UTF-8)
+12      Arabic characters with no terminating new line. (UTF-8)
+13      As 12 but with additional English text. (UTF-8)
+14      Invalid multi-byte input.
+15      Every valid space and alpha in en_GB.UTF-8.
