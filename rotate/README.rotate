@@ -1,0 +1,21 @@
+This program has been tested on Linux and macos.  To build it, run
+
+   make
+
+in the current directory.  Thereafter run it with
+
+    ./rotate left|right <input_file> <output_file>
+
+The directory tests/ contains some simple unit tests, which can be run with
+
+    make test
+  
+The program uses an internal buffer currently defined to be only 3 bytes in
+size.  Obviously, it would be much larger in practice — likely related to the
+system page size.  The small size here was for ease of development, including
+curated test input that exceeds the buffer size.
+
+An empty file is defined as valid input.
+
+The style is "C Style and Coding Standards for SunOS" and is intended to be
+viewed with 8-space tabs.
